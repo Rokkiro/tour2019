@@ -1,0 +1,64 @@
+
+{% extends 'budget/base.html' %}
+{% load bootstrap %}
+
+{% block body %}
+
+<div class="albums-container container-fluid">
+    
+    <div class="col-sm-8 col-md-9">
+
+        <ul class="nav nav-pills" style="margin-bottom: 10px;">
+            <li role="presentation" class="active"><a href="{% url 'budget:index'%}">View All</a></li>
+        </ul>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+
+                <h3>Tour moneys</h3>
+
+                {% if error_message %}
+                    <p><strong>{{ error_message }}</strong></p>
+                {% endif %}
+
+                <form method="get">
+                    {{ filter.form|bootstrap }}
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Sign</th>
+                        <th>Amount Ru</th>
+                        <th>Amount Cur</th>
+                        <th>Cur</th>
+                        <th>Category</th>
+                        <th>City</th>
+                        <th>Member</th>
+                        <th>Comment</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for money in filter.qs %}
+                        <tr>
+                            <td>{{ money.sign.symbol }}</td>
+                            <td>{{ money.amount_ru }}</td>
+                            <td>{{ money.amount_cur }}</td>
+                            <td>{{ money.currency.name }}</td>
+                            <td>{{ money.category.name }}</td>
+                            <td>{{ money.city.name }}</td>
+                            <td>{{ money.member.name }}</td>
+                            <td>{{ money.comment }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
