@@ -64,8 +64,8 @@ class Money(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     sign = models.ForeignKey(Sign, on_delete=models.CASCADE)
-    amount_ru = models.IntegerField(default=0)
-    amount_cur = models.IntegerField(default=0)
+    amount_ru = models.IntegerField(default=0, blank=True)
+    amount_cur = models.IntegerField(default=0, blank=True)
     comment = models.CharField(max_length=300, default='', blank=True)
 
     def __str__(self):

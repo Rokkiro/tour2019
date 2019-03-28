@@ -12,7 +12,7 @@
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
-    
+
 <!-- Header -->
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
@@ -24,38 +24,13 @@
             </button>
             <a class="navbar-brand" href="{% url 'budget:index' %}">Tour 2019</a>
         </div>
-        
+
         <!-- Items -->
         <div class="collapse navbar-collapse" id="topNavBar">
         <ul class="nav navbar-nav">
             <li class="">
-                <a href="#">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Bands
-                </a>
-            </li>
-            <li class="">
-                <a href="#">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Members
-                </a>
-            </li>
-            <li class="">
-                <a href="{% url 'budget:index' %}">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Countries
-                </a>
-            </li>
-            <li class="">
-                <a href="{% url 'budget:index' %}">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Cities
-                </a>
-            </li>
-            <li class="">
-                <a href="{% url 'budget:index' %}">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Categories
-                </a>
-            </li>
-            <li class="">
-                <a href="{% url 'budget:index' %}">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Currencies
+                <a href="http://rokkiro.pythonanywhere.com/admin/">
+                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Admin section
                 </a>
             </li>
         </ul>
@@ -65,18 +40,18 @@
                 <a href="#">
                     <span class="glyphicon  " aria-hidden="true"></span>&nbsp; Add smth
                 </a>
-            </li> 
+            </li>
             <li class="">
                 <a href="#">
                     <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
                 </a>
-            </li> 
+            </li>
         </ul>
-  
+
         </div>
     </div>
 </nav>
-    
+
 {% block body %}
 {% endblock %}
 </body>
