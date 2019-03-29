@@ -3,62 +3,84 @@
 {% load bootstrap %}
 
 {% block body %}
+    <br/>
+    <h3>Blankenberge & Life on Venus Tour 2019 Expenses</h3>
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p><br/>
+    {% endif %}
 
-<div class="albums-container container-fluid">
-    
-    <div class="col-sm-8 col-md-9">
+    <div class="raw">
+        <div class="col-lg">
+        <div class="accordion" id="filterAccordion">
+            <div class="card">
+                <div class="card-header" id="filterHeading">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#filterCollapse" aria-expanded="true" aria-controls="filterCollapse">
+                      Скрыть\показать фильтр
+                    </button>
+                  </h2>
+                </div>
+                <div id="filterCollapse" class="collapse show" aria-labelledby="headingTwo" data-parent="#filterAccordion">
+                  <div class="card-body">
 
-        <ul class="nav nav-pills" style="margin-bottom: 10px;">
-            <li role="presentation" class="active"><a href="{% url 'budget:index'%}">View All</a></li>
-        </ul>
-
-        <div class="panel panel-default">
-            <div class="panel-body">
-
-                <h3>Tour moneys</h3>
-
-                {% if error_message %}
-                    <p><strong>{{ error_message }}</strong></p>
-                {% endif %}
-
-                <form method="get">
-                    {{ filter.form|bootstrap }}
-                    <button type="submit" class="btn btn-success">Search</button>
-                </form>
-
-
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Sign</th>
-                        <th>Amount Ru</th>
-                        <th>Amount Cur</th>
-                        <th>Cur</th>
-                        <th>Category</th>
-                        <th>City</th>
-                        <th>Member</th>
-                        <th>Comment</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for money in filter.qs %}
-                        <tr>
-                            <td>{{ money.sign.symbol }}</td>
-                            <td>{{ money.amount_ru }}</td>
-                            <td>{{ money.amount_cur }}</td>
-                            <td>{{ money.currency.name }}</td>
-                            <td>{{ money.category.name }}</td>
-                            <td>{{ money.city.name }}</td>
-                            <td>{{ money.member.name }}</td>
-                            <td>{{ money.comment }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
+                            <form method="get">
+                                {{ filter.form|bootstrap }}
+                                <button type="submit" class="btn btn-dark">Применить фильтры</button>
+                            </form>
+                            <br/>
+                          <a href="{% url 'budget:index' %}">Очистить фильтр</a>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <div class="col-lg">
+            <table class="table table-sm table-striped">
+                <thead>
+                <tr>
+                    <th>+\-</th>
+                    <th>Город</th>
+                    <th>Дата</th>
+                    <th>Валюта</th>
+                    <th>Сумма (EU)</th>
+                    <th>Сумма (RU)</th>
+                    <th>Категория</th>
+                    <th>Участник</th>
+                    <th>Комментарий</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for money in filter.qs %}
+                <tr>
+                    <td>{{ money.sign.symbol }}</td>
+                    <td>{{ money.city.name }}</td>
+                    <td>{{ money.get_date_of_row }}</td>
+                    <td>{{ money.currency.name }}</td>
+                    <td>{{ money.amount_cur }}</td>
+                    <td>{{ money.get_amount_ru }}</td>
+                    <td>{{ money.category.name }}</td>
+                    <td>{{ money.member.name }}</td>
+                    <td>{{ money.comment }}</td>
+                </tr>
+                {% endfor %}
+                {% if amount_ru_sum %}
+                <tr id="rawSum">
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>ИТОГО:</td>
+                    <td>{{ amount_ru_sum }}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endif %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
 {% endblock %}

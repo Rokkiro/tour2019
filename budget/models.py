@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import datetime
 
 
 class Band(models.Model):
@@ -44,10 +45,11 @@ class Category(models.Model):
 
 class Currency(models.Model):
     name = models.CharField(max_length=100)
-    rate = models.IntegerField()
+    rate = models.FloatField(default=0.0)
+    date = models.DateField(default=datetime.now, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.name + " (" + str(self.date) + ") = " + str(self.rate)
 
 
 class Sign(models.Model):
@@ -59,17 +61,25 @@ class Sign(models.Model):
 
 
 class Money(models.Model):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE, blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    sign = models.ForeignKey(Sign, on_delete=models.CASCADE)
-    amount_ru = models.IntegerField(default=0, blank=True)
-    amount_cur = models.IntegerField(default=0, blank=True)
-    comment = models.CharField(max_length=300, default='', blank=True)
+    date = models.DateField(default=datetime.now, blank=True,  verbose_name='Дата')
+    member = models.ForeignKey(Member, on_delete=models.CASCADE, blank=True, null=True,  verbose_name='ФИО')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Категория')
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE,  verbose_name='Валюта')
+    city = models.ForeignKey(City, on_delete=models.CASCADE,  verbose_name='Город')
+    sign = models.ForeignKey(Sign, on_delete=models.CASCADE,  verbose_name='Приход\Расход')
+    amount_cur = models.FloatField(default=0.0, blank=True,  verbose_name='Сумма (в валюте)')
+    comment = models.CharField(max_length=300, default='', blank=True,  verbose_name='Комментарий')
 
     def __str__(self):
-        return self.sign.symbol + str(self.amount_ru) + " руб. " + self.category.name + " в " + self.city.name
+        return self.sign.symbol + str(self.get_amount_ru()) + " руб. " + self.category.name + " в " + self.city.name
+
+    def get_amount_ru(self):
+        return float(round(self.currency.rate * self.amount_cur, 2))
+
+    def get_date_of_row(self):
+        return self.date.strftime("%d-%m-%y")
+
+
 
 
 

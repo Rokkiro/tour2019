@@ -2,57 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Tour 2019{% endblock %}</title>
+    <title>{% block title %}Тур 2019{% endblock %}</title>
 
     {% load staticfiles %}
-    <link rel="stylesheet"  href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' />
+    <link rel="stylesheet" href="/static/budget/bootstrap/css/bootstrap.css"/>
     <link href='https://fonts.googleapis.com/css?family=Satisfy' rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/static/budget/style.css" />
     <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/static/budget/bootstrap/js/bootstrap.js"></script>
+    <script src="/static/budget/bootstrap/js/bootstrap.bundle.js"></script>
+
 </head>
 <body>
 
 <!-- Header -->
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'budget:index' %}">Tour 2019</a>
-        </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'budget:index' %}">Тур 2019</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <!-- Items -->
-        <div class="collapse navbar-collapse" id="topNavBar">
-        <ul class="nav navbar-nav">
-            <li class="">
-                <a href="http://rokkiro.pythonanywhere.com/admin/">
-                    <span class="glyphicon  " aria-hidden="true"> </span>&nbsp; Admin section
-                </a>
-            </li>
-        </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'budget:admin' %}">Admin page</a>
+          </li>
 
-        <ul class="nav navbar-nav navbar-right">
-            <li class="">
-                <a href="#">
-                    <span class="glyphicon  " aria-hidden="true"></span>&nbsp; Add smth
-                </a>
-            </li>
-            <li class="">
-                <a href="#">
-                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout
-                </a>
-            </li>
-        </ul>
+      </div>
 
-        </div>
+
+
+    </nav>
+    <div class="container">
+
+    {% block body %}
+    {% endblock %}
+
+
     </div>
-</nav>
-
-{% block body %}
-{% endblock %}
 </body>
 </html>
