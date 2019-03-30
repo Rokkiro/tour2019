@@ -6,4 +6,4 @@ class MoneyFilter(django_filters.FilterSet):
     class Meta:
 
         model = Money
-        fields = ['sign','date','currency','category', 'city','member']
+        fields = ['sign','date','currency','category', 'city']

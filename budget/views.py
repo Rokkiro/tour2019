@@ -24,6 +24,13 @@ class IndexView(generic.ListView):
         return context
 
 
+class CashView(generic.ListView):
+    template_name = 'budget/cash.html'
+
+    def get_queryset(self):
+        return Money.objects.filter(category__name='cash')
+
+
 def adminView(request):
     response = redirect('/admin/')
     return response
