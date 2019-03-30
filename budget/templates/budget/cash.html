@@ -1,0 +1,40 @@
+
+{% extends 'budget/base.html' %}
+{% block body %}
+    <br/>
+    <h3>CASH</h3>
+    {% if error_message %}
+    <p><strong>{{ error_message }}</strong></p><br/>
+    {% endif %}
+
+    <div class="raw">
+        <div class="col">
+            <table class="table table-sm table-striped">
+                <thead>
+               <tr>
+                    <th>Имя</th>
+                    <th>Сумма</th>
+                    <th>RUB</th>
+                    <th>Дата</th>
+                    <th>Группа</th>
+                    <th>Комментарий</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for money in object_list %}
+                <tr>
+                    <td>{{ money.member.name }}</td>
+                    <td>{{ money.get_amount_cur }}</td>
+                    <td>{{ money.get_amount_ru }}</td>
+                    <td>{{ money.get_date }}</td>
+                    <td>{{ money.member.band.name }}</td>
+                    <td>{{ money.comment }}</td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}

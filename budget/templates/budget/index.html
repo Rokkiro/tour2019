@@ -10,7 +10,11 @@
     {% endif %}
 
     <div class="raw">
+<<<<<<< HEAD
         <div class="col-lg">
+=======
+        <div class="col">
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
         <div class="accordion" id="filterAccordion">
             <div class="card">
                 <div class="card-header" id="filterHeading">
@@ -35,11 +39,16 @@
             </div>
         </div>
 
+<<<<<<< HEAD
         <div class="col-lg">
+=======
+        <div class="col">
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
             <table class="table table-sm table-striped">
                 <thead>
                 <tr>
                     <th>+\-</th>
+<<<<<<< HEAD
                     <th>Город</th>
                     <th>Дата</th>
                     <th>Валюта</th>
@@ -47,6 +56,13 @@
                     <th>Сумма (RU)</th>
                     <th>Категория</th>
                     <th>Участник</th>
+=======
+                    <th>Категория</th>
+                    <th>Дата</th>
+                    <th>Сумма</th>
+                    <th>RUB</th>
+                    <th>Город</th>
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
                     <th>Комментарий</th>
                 </tr>
                 </thead>
@@ -54,6 +70,7 @@
                 {% for money in filter.qs %}
                 <tr>
                     <td>{{ money.sign.symbol }}</td>
+<<<<<<< HEAD
                     <td>{{ money.city.name }}</td>
                     <td>{{ money.get_date_of_row }}</td>
                     <td>{{ money.currency.name }}</td>
@@ -61,6 +78,13 @@
                     <td>{{ money.get_amount_ru }}</td>
                     <td>{{ money.category.name }}</td>
                     <td>{{ money.member.name }}</td>
+=======
+                    <td>{{ money.category.name }}</td>
+                    <td>{{ money.get_date }}</td>
+                    <td>{{ money.get_amount_cur }}</td>
+                    <td>{{ money.get_amount_ru }}</td>
+                    <td>{{ money.city.name }}</td>
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
                     <td>{{ money.comment }}</td>
                 </tr>
                 {% endfor %}
@@ -69,12 +93,18 @@
                     <td></td>
                     <td></td>
                     <td></td>
+<<<<<<< HEAD
                     <td></td>
+=======
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
                     <td>ИТОГО:</td>
                     <td>{{ amount_ru_sum }}</td>
                     <td></td>
                     <td></td>
+<<<<<<< HEAD
                     <td></td>
+=======
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
                 </tr>
                 {% endif %}
 

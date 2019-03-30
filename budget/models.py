@@ -76,8 +76,17 @@ class Money(models.Model):
     def get_amount_ru(self):
         return float(round(self.currency.rate * self.amount_cur, 2))
 
+<<<<<<< HEAD
     def get_date_of_row(self):
         return self.date.strftime("%d-%m-%y")
+=======
+    def get_date(self):
+        return self.date.strftime("%d/%m")
+
+    def get_amount_cur(self):
+        return str(self.amount_cur) + " " + self.currency.name
+
+>>>>>>> 13eef93d9354183026c45e3aab371adffe5d01cb
 
 
 
